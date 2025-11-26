@@ -52,6 +52,28 @@ public class CarroControllerTest {
     }
 
     @Test
+    void deveRetornarIllegalArgumentAoTentarSalvarComDiariaNegativa() throws Exception {
+        when(carroService.salvar(any())).thenThrow(IllegalArgumentException.class);
+
+        String json = """
+                {
+                    "modelo": "Corolla",
+                    "valorDiaria": 150,
+                    "ano": 2026
+                }
+                """;
+
+        ResultActions result = mvc.perform(
+                post("/carros")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+        );
+
+        result
+                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity());
+    }
+
+    @Test
     void deveBuscarUmCarroPorId() throws Exception {
         CarroEntity carro = new CarroEntity(1L, "Corolla", 150, 2026);
 
