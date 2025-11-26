@@ -4,6 +4,7 @@ import io.github.jahomme.locadora.entity.CarroEntity;
 import io.github.jahomme.locadora.exceptions.EntityNotFoundException;
 import io.github.jahomme.locadora.repository.CarroRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,4 +47,5 @@ public class CarroService {
     public List<CarroEntity> listarTodos(){
         return repository.findAll();
     }
+
 }
